@@ -1,7 +1,7 @@
 
 // properties and initial velocity
 const defaultProps = {
-  bounce: 0.75,
+  bounce: 0.5,
   radius: 30,
   color: 'red'
 }
@@ -43,11 +43,8 @@ export class Ball {
     ( (xMouse-this.x) * (xMouse-this.x) ) + 
     ( (yMouse-this.y) * (yMouse-this.y) )
     );
-    console.log(dist, this.props.radius);
    if (dist < this.props.radius) {
-      console.log('ball clicked')
       console.log(this.props.color)
-      this.ball
       return true;
     } else {
       return false;
