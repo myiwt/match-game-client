@@ -169,10 +169,12 @@ export class Scene {
     // Game over if all balls are removed
     if (this.balls.length==0) {
       const countdownEl = document.getElementById('timer').innerHTML;
+      var timeInt = parseInt(countdownEl.replace(/: /g,""));
+      var finalScore = 2000000 - timeInt; // The faster your time, the higher your score.
       const userName = document.getElementById('welcome').innerHTML;
       const scoreData = {
         name: userName,
-        score: countdownEl,
+        score: finalScore,
         date: Date.now
       }
       axios.post('http://localhost:3000/scores', scoreData)
@@ -180,7 +182,7 @@ export class Scene {
       .catch(err => {
         console.log(err);
       })
-      alert("You win, " + userName + "! Time taken: " + countdownEl);
+      alert("You win, " + userName + "! Time taken: " + finalScore);
       location.reload();
     }
   }
