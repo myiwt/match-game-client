@@ -4,7 +4,6 @@
   "description": "Template for a game tutorial series",
   "main": "src/index.html",
   "staticFiles": {
-    "staticPath": "assets",
     "watcherGlob": "**"
   },
   "scripts": {
@@ -41,6 +40,5 @@
     "parcel-plugin-static-files-copy": "^2.2.1",
     "rimraf": "^3.0.0",
     "standard": "^14.3.1"
-  },
-  "dependencies": {}
+  }
 }

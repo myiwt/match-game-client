@@ -10,8 +10,8 @@ export class Ball {
   constructor (x = 0, y = 0, sceneProps, props) {
     this.props = {
       ...defaultProps,
-      startVelX: (Math.random() * 5 + 5) * (Math.floor(Math.random() * 2) || -1),
-      startVelY: (Math.random() * 5 + 5) * (Math.floor(Math.random() * 2) || -1),
+      startVelX: (Math.random() * 5 + 3) * (Math.floor(Math.random() * 2) || -1),
+      startVelY: (Math.random() * 5 + 3) * (Math.floor(Math.random() * 2) || -1),
       ...props
     }
     this.sceneProps = sceneProps
@@ -37,6 +37,22 @@ export class Ball {
     ctx.restore()
   }
 
+  clickBall(xMouse, yMouse) {
+    const dist = 
+    Math.sqrt(
+    ( (xMouse-this.x) * (xMouse-this.x) ) + 
+    ( (yMouse-this.y) * (yMouse-this.y) )
+    );
+    console.log(dist, this.props.radius);
+   if (dist < this.props.radius) {
+      console.log('ball clicked')
+      console.log(this.props.color)
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   update () {
     const { props, sceneProps } = this
 
@@ -44,13 +60,11 @@ export class Ball {
     if (this.y + props.radius >= sceneProps.height) {
       this.velY *= -props.bounce
       this.y = sceneProps.height - props.radius
-      this.velX *= sceneProps.friction
     }
     // top bound / ceiling
     if (this.y - props.radius <= 0) {
       this.velY *= -props.bounce
       this.y = props.radius
-      this.velX *= sceneProps.friction
     }
 
     // left bound
@@ -73,7 +87,6 @@ export class Ball {
     }
 
     // update position
-    this.velY += sceneProps.gravity
     this.x += this.velX
     this.y += this.velY
   }

@@ -3,9 +3,7 @@ import Ball from './Ball'
 // some default values
 const defaultConfig = {
   width: 500,
-  height: 500,
-  gravity: 0.25,
-  friction: 0.98
+  height: 500
 }
 
 // classes are functions that create objects
@@ -34,34 +32,66 @@ export class Scene {
     // begin update loop
     // use an arrow function so that we can use `this` properly
     document.addEventListener('DOMContentLoaded', () => this.update())
+    this.canvas.addEventListener('click', (event) => {
+      const rect = this.canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      for (let i=0; i<this.balls.length; i++) {
+        if (this.balls[i].clickBall(x, y)) {
+          this.balls.splice(i,1); // remove ball from balls array, so they stop drawing
+          break;
+        }
+      }
+    })
   }
 
   createBalls () {
     const { config } = this
-    const colors = ['purple', 'red', 'blue', 'lime', 'magenta']
+    //const colors = ['purple', 'red', 'blue', 'lime', 'magenta', 'orange','yellow','green','aqua','navy','pink', 'gray']
+    const colors = ['purple', 'red']
     // build an array of ball objects
     const balls = []
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < colors.length; i++) {
+      // size 10-30
+      let size = Math.random() * 20 + 10
       balls.push(
         new Ball(
           // random X Y position
           Math.random() * config.width, Math.random() * config.height,
           // scene config
           {
-            // default width, height, friction
-            ...config,
-            // random positive or negative gravity
-            gravity: config.gravity * (Math.floor(Math.random() * 2) || -1)
+            // default width, height
+            ...config
           },
           // ball properties
           {
             // extra bouncey
-            bounce: 0.90,
-            // size 10-30
-            radius: Math.random() * 20 + 10,
-            // random color
-            color: colors[Math.floor(Math.random() * colors.length)]
+            bounce: 0.5,
+            radius: size,
+            // One ball of each color
+            color: colors[i]
+          }
+        )
+      )
+
+      // repeat ball for matching
+      balls.push(
+        new Ball(
+          // random X Y position
+          Math.random() * config.width, Math.random() * config.height,
+          // scene config
+          {
+            // default width, height
+            ...config
+          },
+          // ball properties
+          {
+            // extra bouncey
+            bounce: 1.0,
+            radius: size,
+            // One ball of each color
+            color: colors[i]
           }
         )
       )
@@ -85,6 +115,14 @@ export class Scene {
 
     // draw objects
     balls.forEach(ball => ball.draw(ctx))
+
+    // check if ball is clicked
+    /* for (let ball of balls) {
+      if ()
+    } */
+
+    
+
   }
 }
 
