@@ -168,10 +168,12 @@ export class Scene {
     // Game over if all balls are removed
     if (this.balls.length==0) {
       const countdownEl = document.getElementById('timer').innerHTML;
-      alert("You win! Time taken: " + countdownEl);
+      const userName = document.getElementById('welcome').innerHTML;
+      alert("You win, " + userName + "! Time taken: " + countdownEl);
       location.reload();
     }
   }
+
 }
 
 export default Scene
