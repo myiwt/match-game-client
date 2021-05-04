@@ -1,4 +1,5 @@
 import Ball from './Ball'
+import axios from 'axios'
 
 // some default values
 const defaultConfig = {
@@ -169,6 +170,16 @@ export class Scene {
     if (this.balls.length==0) {
       const countdownEl = document.getElementById('timer').innerHTML;
       const userName = document.getElementById('welcome').innerHTML;
+      const scoreData = {
+        name: userName,
+        score: countdownEl,
+        date: Date.now
+      }
+      axios.post('http://localhost:3000/scores', scoreData)
+      .then(res => console.log(res))
+      .catch(err => {
+        console.log(err);
+      })
       alert("You win, " + userName + "! Time taken: " + countdownEl);
       location.reload();
     }

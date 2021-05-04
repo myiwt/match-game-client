@@ -10,14 +10,18 @@ h1 {
 }
 
 #gameContainer {
+  float:left;
   margin-left: 300px;
   
 }
 
+#leaderboard {
+  margin-left: 500px;
+  float: left;
+}
 
 canvas {
   background: #f8f8f8;
-
 }
 
 
