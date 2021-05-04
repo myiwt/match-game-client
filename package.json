@@ -1,7 +1,7 @@
 {
-  "name": "game-template-vanilla",
+  "name": "match-game-client",
   "version": "0.0.1",
-  "description": "Template for a game tutorial series",
+  "description": "Match the balls - front end",
   "main": "src/index.html",
   "staticFiles": {
     "watcherGlob": "**"

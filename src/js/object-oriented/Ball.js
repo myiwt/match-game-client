@@ -47,6 +47,7 @@ export class Ball {
    if (dist < this.props.radius) {
       console.log('ball clicked')
       console.log(this.props.color)
+      this.ball
       return true;
     } else {
       return false;
