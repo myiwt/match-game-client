@@ -1,13 +1,16 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 36px;
+  color: #fff;
+  background-color:#2d2d2d;
+}
+
 h1 {
   text-align: center;
 }
 
 #gameContainer {}
 
-body {
-  background: rgb(201, 195, 195);
-  color: #f8f8f8;
-}
 
 canvas {
   background: #f8f8f8;
@@ -15,3 +18,13 @@ canvas {
   margin: 0 auto;
   display: block;
 }
+
+
+
+#timer {
+  font-weight: bold;
+  text-align: center;
+  
+}
+
+

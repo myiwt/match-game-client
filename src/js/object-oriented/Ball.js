@@ -1,7 +1,7 @@
 
 // properties and initial velocity
 const defaultProps = {
-  bounce: 0.5,
+  bounce: 1,
   radius: 30,
   color: 'red'
 }
@@ -10,8 +10,8 @@ export class Ball {
   constructor (x = 0, y = 0, sceneProps, props) {
     this.props = {
       ...defaultProps,
-      startVelX: (Math.random() * 5 + 3) * (Math.floor(Math.random() * 2) || -1),
-      startVelY: (Math.random() * 5 + 3) * (Math.floor(Math.random() * 2) || -1),
+      startVelX: (Math.random() * 2 + 3) * (Math.floor(Math.random() * 2) || -1),
+      startVelY: (Math.random() * 2 + 3) * (Math.floor(Math.random() * 2) || -1),
       ...props
     }
     this.sceneProps = sceneProps

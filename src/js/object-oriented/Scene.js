@@ -35,15 +35,18 @@ export class Scene {
     // 0 index element = ball colour, 1st index element = ball size
     var lastClickedBall = ["",""] 
 
-
     // begin update loop
     // use an arrow function so that we can use `this` properly
-    document.addEventListener('DOMContentLoaded', () => this.update())
+    document.addEventListener('DOMContentLoaded', () => this.update());
+
     this.canvas.addEventListener('click', (event) => {
       const rect = this.canvas.getBoundingClientRect(); // dimensions of canvas rectangle
       // positions inside the canvas (not of the entire browser)
       const x = event.clientX - rect.left; 
       const y = event.clientY - rect.top;
+      console.log(this.balls.length);
+      
+
       for (let i=0; i<this.balls.length; i++) {
         var currentBall = this.balls[i];
         var currentColor = currentBall.props.color;
@@ -83,7 +86,7 @@ export class Scene {
         // ball properties
         {
           // extra bouncey
-          bounce: 0.5,
+          bounce: 1,
           radius: size,
           color: lastColor
         }
@@ -93,14 +96,14 @@ export class Scene {
 
   createBalls () {
     const { config } = this
-    //const colors = ['purple', 'red', 'blue', 'lime', 'magenta', 'orange','yellow','green','aqua','navy','pink', 'gray']
-    const colors = ['purple', 'red']
+    // const colors = ['purple', 'red', 'blue', 'lime', 'magenta', 'orange','yellow','green','aqua','navy','pink', 'gray']
+    const colors = ['purple', 'red'];
     // build an array of ball objects
     const balls = []
 
     for (let i = 0; i < colors.length; i++) {
-      // size 10-30
-      let size = Math.random() * 20 + 10
+      // size 20-40
+      let size = Math.random() * 20 + 20
       balls.push(
         new Ball(
           // random X Y position
@@ -113,7 +116,7 @@ export class Scene {
           // ball properties
           {
             // extra bouncey
-            bounce: 0.5,
+            bounce: 1,
             radius: size,
             // One ball of each color
             color: colors[i]
@@ -134,7 +137,7 @@ export class Scene {
           // ball properties
           {
             // extra bouncey
-            bounce: 0.5,
+            bounce: 1,
             radius: size,
             // One ball of each color
             color: colors[i]
@@ -162,6 +165,12 @@ export class Scene {
     // draw objects
     balls.forEach(ball => ball.draw(ctx))
 
+    // Game over if all balls are removed
+    if (this.balls.length==0) {
+      const countdownEl = document.getElementById('timer').innerHTML;
+      alert("You win! Time taken: " + countdownEl);
+      location.reload();
+    }
   }
 }
 
