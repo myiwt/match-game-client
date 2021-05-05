@@ -97,8 +97,7 @@ export class Scene {
 
   createBalls () {
     const { config } = this
-    // const colors = ['purple', 'red', 'blue', 'lime', 'magenta', 'orange','yellow','green','aqua','navy','pink', 'gray']
-    const colors = ['purple', 'red'];
+    const colors = ['purple', 'red', 'blue', 'lime', 'magenta', 'orange','yellow','green','aqua','navy','pink', 'gray']
     // build an array of ball objects
     const balls = []
 
