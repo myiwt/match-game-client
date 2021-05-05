@@ -8,31 +8,29 @@ function getScores() {
             var scores = res.data.result;
             // Sort scores to return the top 10
             var scoresArr = [];
-            console.log(scores);
             for (let i=0;i<scores.length;i++) {
                 scoresArr.push(scores[i]["score"], scores[i]);
             }
-        /*     for (var score in scores) {
-                scoresArr.push([score, scores[score]]);
-                console.log(score);
-            } */
-
+            console.log(scoresArr);
             scoresArr.sort(function(a, b) {
                 return a[1]-b[1];
             });
-            console.log(scoresArr);
+            
             var top5scores = [];
-            // If there are fewer than 5 scores, just use all the scores for the leaderboard
-            var nTopScores = scoresArr.length>=5 ? 5: scoresArr.length
-            for (let i=0; i<nTopScores; i++) {
-                top5scores.push([scoresArr[i][1]["name"],scoresArr[i][1]["score"]]);
-            }
-            console.log(top5scores);
+            
+            // select top 5 scores only
+            top5scores.push([scoresArr[1]["name"],scoresArr[1]["score"]]);
+            top5scores.push([scoresArr[3]["name"],scoresArr[3]["score"]]);
+            top5scores.push([scoresArr[5]["name"],scoresArr[5]["score"]]);
+            top5scores.push([scoresArr[7]["name"],scoresArr[7]["score"]]);
+            top5scores.push([scoresArr[9]["name"],scoresArr[9]["score"]]);
+
+            //console.log(top5scores);
             var leaderboardTable = "<table><tr><th>Name</th><th>Score</th></tr>";
-            for (let i=0;i<top5scores.length; i++) {
+             for (let i=0;i<top5scores.length; i++) {
                 leaderboardTable += "<tr><td>" + top5scores[i][0] + "</td>";
                 leaderboardTable += "<td>" + top5scores[i][1] + "</td></tr>";
-            }
+            } 
             leaderboardTable += "</table>";
             const leaderboardEl = document.getElementById('leaderboardtable');
             leaderboardEl.innerHTML = leaderboardTable;
