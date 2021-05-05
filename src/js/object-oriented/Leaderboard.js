@@ -11,25 +11,38 @@ function getScores() {
             for (let i=0;i<scores.length;i++) {
                 scoresArr.push(scores[i]["score"], scores[i]);
             }
-            console.log(scoresArr);
             scoresArr.sort(function(a, b) {
                 return a[1]-b[1];
             });
             
-            var top5scores = [];
-            
-            // select top 5 scores only
-            top5scores.push([scoresArr[1]["name"],scoresArr[1]["score"]]);
-            top5scores.push([scoresArr[3]["name"],scoresArr[3]["score"]]);
-            top5scores.push([scoresArr[5]["name"],scoresArr[5]["score"]]);
-            top5scores.push([scoresArr[7]["name"],scoresArr[7]["score"]]);
-            top5scores.push([scoresArr[9]["name"],scoresArr[9]["score"]]);
+            Array.prototype.sortOn = function(key){
+                this.sort(function(a, b){
+                    if(a[key] < b[key]){
+                        return 1;
+                    }else if(a[key] > b[key]){
+                        return -1;
+                    }
+                    return 0;
+                });
+            }
+            scores.sortOn("score");
 
+            var top5scores = [];
+
+            // select top 5 scores only
+            top5scores.push(scores[0]["name"],scores[0]["score"]);
+            top5scores.push(scores[1]["name"],scores[1]["score"]);
+            top5scores.push(scores[2]["name"],scores[2]["score"]);
+            top5scores.push(scores[3]["name"],scores[3]["score"]);
+            top5scores.push(scores[4]["name"],scores[4]["score"]);
+            
+            console.log(top5scores);
             //console.log(top5scores);
             var leaderboardTable = "<table><tr><th>Name</th><th>Score</th></tr>";
-             for (let i=0;i<top5scores.length; i++) {
-                leaderboardTable += "<tr><td>" + top5scores[i][0] + "</td>";
-                leaderboardTable += "<td>" + top5scores[i][1] + "</td></tr>";
+             for (let i=0;i<10; i++) {
+                leaderboardTable += "<tr><td>" + top5scores[i] + "</td>";
+                leaderboardTable += "<td>" + top5scores[i+1] + "</td></tr>";
+                i++
             } 
             leaderboardTable += "</table>";
             const leaderboardEl = document.getElementById('leaderboardtable');
