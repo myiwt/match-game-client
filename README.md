@@ -34,3 +34,8 @@ Then, load the client in a browser:
 ```bash
 http://localhost:1234/
 ```
+
+
+### Demo
+
+![link to demo video](https://github.com/myiwt/match-game-client/blob/main/ball-match-gif.gif)
