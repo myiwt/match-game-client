@@ -1,6 +1,6 @@
 # Ball match game: client
 
-A frontend for a ball matching game.
+This is the front end code for a game that was created as part of a 48 hour hackathon.
 
 ## Tech stack
 **Client:** Node.js
